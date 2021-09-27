@@ -5,7 +5,7 @@
 ### 功能
 
 - 端口扫描
-- 暴力破解（ftp、ssh、smb、mongodb、mssql、mysql、postgresql）
+- 暴力破解（ftp、ssh、smb、mongodb、mssql、mysql、postgresql、redis）
 - 未授权访问（zookeeper、elastic、memcached、couchdb）
 
 ### usage
