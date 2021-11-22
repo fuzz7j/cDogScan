@@ -2,6 +2,7 @@ package common
 
 import (
 	"cDogScan/config"
+	"cDogScan/log"
 	"fmt"
 	"net"
 	"strconv"
@@ -57,6 +58,7 @@ func Connect(addr IPAddr, respondingHosts chan<- string, reqTimeout int64, wg *s
 	if err == nil {
 		conn.Close()
 		address := addr.Ip + ":" + strconv.Itoa(addr.Port)
+		log.Logsuccess(address)
 		respondingHosts <- address
 		wg.Add(1)
 	}

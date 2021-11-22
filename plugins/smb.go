@@ -9,35 +9,6 @@ import (
 	"time"
 )
 
-/*
-未加入超时控制
-func SmbScan(info *config.Info) (result bool, err error) {
-	for _, user := range config.UserList["smb"] {
-		for _, password := range config.Passwords {
-			password = strings.Replace(password, "{user}", user, -1)
-			opt := smb.Options{
-				Host: info.Host,
-				Port: 445,
-				User: user,
-				Password: password,
-				Domain: "",
-				Workstation: "",
-			}
-			session, err := smb.NewSession(opt,false)
-			if err == nil {
-				session.Close()
-				if session.IsAuthenticated {
-					res := fmt.Sprintf("[SMB]%v:%v %v/%v", info.Host, info.Port, user, password)
-					log.Logsuccess(res)
-					result = true
-				}
-			}
-		}
-	}
-	return result, err
-}
-*/
-
 func SmbScan(info *config.Info) (result bool, err error) {
 	for _, user := range config.UserList["smb"] {
 		for _, pass := range config.Passwords {

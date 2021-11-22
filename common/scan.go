@@ -2,9 +2,7 @@ package common
 
 import (
 	"cDogScan/config"
-	"cDogScan/log"
 	"cDogScan/plugins"
-	"fmt"
 	"strings"
 	"sync"
 )
@@ -15,14 +13,10 @@ func Scan(Info config.Info) {
 	hosts, _ := ParseIP(Info.Host, config.Hostfile)
 	if len(hosts) > 0 {
 		AliveAddr := CheckAlive(hosts, Info.Port, Info.Timeout)
-		fmt.Println("Number of target:", len(AliveAddr))
 		for _, targetIP := range AliveAddr {
 			if !config.NoScan {
-				log.Logsuccess(targetIP)
 				Info.Host, Info.Port = strings.Split(targetIP, ":")[0], strings.Split(targetIP, ":")[1]
 				AddScan(Info.Port, Info, ch, &wg)
-			} else {
-				log.Logsuccess(targetIP)
 			}
 		}
 	}
