@@ -55,8 +55,12 @@ func CheckAlive(hosts []string, ports string, timeout int64) []string {
 
 func Connect(addr IPAddr, respondingHosts chan<- string, reqTimeout int64, wg *sync.WaitGroup) {
 	conn, err := net.DialTimeout("tcp", fmt.Sprintf("%v:%v", addr.Ip, addr.Port), time.Duration(reqTimeout)*time.Second)
+	defer func() {
+		if conn != nil {
+			conn.Close()
+		}
+	}()
 	if err == nil {
-		conn.Close()
 		address := addr.Ip + ":" + strconv.Itoa(addr.Port)
 		log.Logsuccess(address)
 		respondingHosts <- address

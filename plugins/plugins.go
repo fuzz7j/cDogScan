@@ -12,6 +12,7 @@ func init()  {
 	ScanFuncMap = make(map[string]Choose)
 	ScanFuncMap["21"] = FtpScan
 	ScanFuncMap["22"] = SshScan
+	ScanFuncMap["161"] = SnmpScan
 	ScanFuncMap["445"] = SmbScan
 	ScanFuncMap["1433"] = MssqlScan
 	ScanFuncMap["3306"] = MysqlScan

@@ -5,7 +5,7 @@
 ### 功能
 
 - 端口扫描
-- 暴力破解（ftp、ssh、smb、mongodb、mssql、mysql、postgresql、redis）
+- 口令爆破（ftp、ssh、smb、mongodb、mssql、mysql、postgresql、redis、snmp）
 - 未授权访问（zookeeper、elastic、memcached、couchdb）
 
 ### usage
@@ -27,10 +27,12 @@
 完整参数
 
 ```
+  -T int
+        thread (default 600)
   -f string
         ip file, for example: -f ip.txt
   -i string
-        ip address,for example: 192.168.11.11 | 192.168.11.11-255
+        ip address,for example: 192.168.0.1 | 192.168.0.1-255 | 192.168.0.1-192.168.255.255 | 192.168.0.1/24
   -m string
         scan type ,for example: -m ssh | -m ssh,ftp,mysql (default "all")
   -no
@@ -38,13 +40,11 @@
   -nooutput
         not output result
   -p string
-        port,for example: 22 | 1-65535 (default "21,22,445,1433,2181,3306,5432,5984,6379,9200,27017")
+        port,for example: 22 | 1-65535 (default "21,22,161,445,1433,2181,3306,5432,5984,6379,9200,11211,27017")
   -pass string
         password
   -passfile string
         password dict, for example: -passfile pass.txt
-  -T int
-        thread (default 600)
   -t int
         timeout (default 3)
   -user string
@@ -65,7 +65,11 @@
 - 20211122   
   修改端口扫描结果为即时输出  
   增加IP解析格式，-i/-f支持IP输入格式：192.168.0.1 | 192.168.0.1-255 | 192.168.0.1-192.168.255.255 | 192.168.0.1/24
+- 20211123  
+  默认端口增加161（snmp）  
+  增加snmp public弱口令扫描
 
 ### Thanks
+
 https://github.com/shadow1ng/fscan  
 https://github.com/netxfly/x-crack
