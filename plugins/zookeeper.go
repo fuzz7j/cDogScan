@@ -21,9 +21,14 @@ func ZookeeperScan(info *config.Info) (result bool, err error) {
 				n, err := conn.Read(rev)
 				if err == nil {
 					if strings.Contains(string(rev[:n]), "Environment") {
-						res := fmt.Sprintf("[Zookeeper unauthorized]%v", target)
+						res := fmt.Sprintf("Zookeeper Unauthorized:%v", target)
 						log.Logsuccess(res)
 						result = true
+					} else {
+						res := fmt.Sprintf("[-]Zookeeper:%v:%v", info.Host, info.Port)
+						log.LogError(res)
+						result = false
+						return result, err
 					}
 					conn.Close()
 				}

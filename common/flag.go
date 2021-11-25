@@ -7,7 +7,7 @@ import (
 
 func Banner() {
 	banner := "\n       _____               _____                 \n      |  __ \\             / ____|                \n   ___| |  | | ___   __ _| (___   ___ __ _ _ __  \n  / __| |  | |/ _ \\ / _` |\\___ \\ / __/ _` | '_ \\ \n | (__| |__| | (_) | (_| |____) | (_| (_| | | | |\n  \\___|_____/ \\___/ \\__, |_____/ \\___\\__,_|_| |_|\n                     __/ |                       \n                    |___/                        \n"
-	version := "                                    Version 1.0.1\n"
+	version := "                                    Version 1.0.3\n"
 	link := "               https://github.com/fuzz7j/cDogScan\n"
 	print(banner,link, version)
 }

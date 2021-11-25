@@ -10,14 +10,25 @@ import (
 )
 
 func SmbScan(info *config.Info) (result bool, err error) {
+	starttime := time.Now().Unix()
 	for _, user := range config.UserList["smb"] {
 		for _, pass := range config.Passwords {
 			pass = strings.Replace(pass, "{user}", user, -1)
 			flag, err := doWithTimeOut(info, user, pass)
 			if flag == true && err == nil {
-				res := fmt.Sprintf("[SMB]%v:%v %v/%v", info.Host, info.Port, user, pass)
+				res := fmt.Sprintf("SMB:%v:%v %v/%v", info.Host, info.Port, user, pass)
 				log.Logsuccess(res)
 				result = true
+				return result, err
+			} else {
+				res := fmt.Sprintf("[-]SMB:%v:%v %v %v", info.Host, info.Port, user, pass)
+				log.LogError(res)
+				if time.Now().Unix() - starttime > (int64(len(config.UserList["smb"]) * len(config.Passwords)) * info.Timeout) {
+					res := fmt.Sprintf("[Error]%v:%v", info.Host, info.Port)
+					log.LogError(res)
+					result = false
+					return result,err
+				}
 			}
 		}
 	}

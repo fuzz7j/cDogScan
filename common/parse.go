@@ -24,7 +24,6 @@ func ParseIP(ip string, filename string) (host []string, err error) {
 		}
 	}
 	host = RemoveDuplicate(host)
-	fmt.Printf("Target IP：%v\n", len(host))
 	return host, err
 }
 
@@ -111,6 +110,7 @@ func ParseIPB(ip string) ([]string, error) {
 }
 
 // 192.168.1.0-192.168.255.255
+
 func ParseIPC(SplitIP1, SplitIP2 []string) ([]string, error) {
 	var IPList []string
 	PrefixIP := strings.Join(SplitIP1[0:2], ".")

@@ -60,6 +60,13 @@
 - [ ] NetBIOS探测、域控探测
 - [ ] Web Title获取
 
+### Bug
+
+- 本地编译，扫描MySQL时输出报错信息  
+  注释 go/pkg/mod/github.com/go-sql-driver/mysql@v1.6.0/packets.go, Line 37
+- SMB不支持2003  
+  SMB模块不支持SMBv1，已加入超时跳过
+
 ### 更新日志
 
 - 20211122   
@@ -68,6 +75,9 @@
 - 20211123  
   默认端口增加161（snmp）  
   增加snmp public弱口令扫描
+- 20211125  
+  增加FTP匿名账户、MYSQL匿名账户、Redis未授权扫描  
+  加入定时输出log及超时跳过，增加进度显示
 
 ### Thanks
 

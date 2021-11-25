@@ -21,7 +21,7 @@ func MemcachedScan(info *config.Info) (result bool, err error) {
 				n, err := client.Read(rev)
 				if err == nil {
 					if strings.Contains(string(rev[:n]), "STAT") {
-						res := fmt.Sprintf("[Memcached unauthorized]%v", target)
+						res := fmt.Sprintf("Memcached Unauthorized:%v", target)
 						log.Logsuccess(res)
 						result = true
 					}

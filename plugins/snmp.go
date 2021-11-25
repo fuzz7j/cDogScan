@@ -25,6 +25,11 @@ func SnmpScan(info *config.Info) (result bool, err error) {
 			res := fmt.Sprintf("[SNMP]%v:%v", info.Host, 161)
 			log.Logsuccess(res)
 			result = true
+		} else {
+			res := fmt.Sprintf("[-]SNMP:%v:%v", info.Host, info.Port)
+			log.LogError(res)
+			result = false
+			return result, err
 		}
 	}
 	return result, nil
